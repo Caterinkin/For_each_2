@@ -5,7 +5,7 @@
 #include <iterator>
 #include <clocale>
 
-// Параллельная версия for_each
+// РџР°СЂР°Р»Р»РµР»СЊРЅР°СЏ РІРµСЂСЃРёСЏ for_each
 template<typename Iterator, typename Func>
 void parallel_for_each(Iterator first, Iterator last, Func&& func, size_t min_block_size = 1000)
 {
@@ -37,33 +37,33 @@ int main()
     std::vector<int> numbers;
     int n, num;
 
-    // Ввод массива
-    std::cout << "Введите количество элементов: ";
+    // Р’РІРѕРґ РјР°СЃСЃРёРІР°
+    std::cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
     std::cin >> n;
 
-    std::cout << "Введите " << n << " чисел через пробел:\n";
+    std::cout << "Р’РІРµРґРёС‚Рµ " << n << " С‡РёСЃРµР» С‡РµСЂРµР· РїСЂРѕР±РµР»:\n";
     for (int i = 0; i < n; ++i)
     {
         std::cin >> num;
         numbers.push_back(num);
     }
 
-    // Вывод исходного массива
-    std::cout << "\nИсходный массив:\n";
+    // Р’С‹РІРѕРґ РёСЃС…РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР°
+    std::cout << "\nРСЃС…РѕРґРЅС‹Р№ РјР°СЃСЃРёРІ:\n";
     for (const auto& num : numbers)
     {
         std::cout << num << " ";
     }
     std::cout << "\n\n";
 
-    // Функция для обработки (увеличиваем каждый элемент на 10)
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё (СѓРІРµР»РёС‡РёРІР°РµРј РєР°Р¶РґС‹Р№ СЌР»РµРјРµРЅС‚ РЅР° 10)
     auto process_func = [](int& n) { n += 10; };
 
-    // Применяем parallel_for_each
+    // РџСЂРёРјРµРЅСЏРµРј parallel_for_each
     parallel_for_each(numbers.begin(), numbers.end(), process_func);
 
-    // Вывод результата
-    std::cout << "Массив после обработки (каждый элемент увеличен на 10):\n";
+    // Р’С‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚Р°
+    std::cout << "РњР°СЃСЃРёРІ РїРѕСЃР»Рµ РѕР±СЂР°Р±РѕС‚РєРё (РєР°Р¶РґС‹Р№ СЌР»РµРјРµРЅС‚ СѓРІРµР»РёС‡РµРЅ РЅР° 10):\n";
     for (const auto& num : numbers)
     {
         std::cout << num << " ";
